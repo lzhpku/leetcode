@@ -1,0 +1,119 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red184\green14\blue61;
+\red247\green238\blue241;\red242\green242\blue242;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Design a data structure that supports all following operations in 
+\i average
+\i0  
+\b O(1)
+\b0  time.\
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0
+\f1\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 insert(val)
+\f0\fs28 \cf2 \cb3 \strokec2 : Inserts an item val to the set if not already present.\cb1 \
+\ls1\ilvl0
+\f1\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 remove(val)
+\f0\fs28 \cf2 \cb3 \strokec2 : Removes an item val from the set if present.\cb1 \
+\ls1\ilvl0
+\f1\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 getRandom
+\f0\fs28 \cf2 \cb3 \strokec2 : Returns a random element from current set of elements. Each element must have the 
+\b same probability
+\b0  of being returned.\cb1 \
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+\cf2 \cb3 \
+
+\b Example:
+\b0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs26 \cf2 \cb6 // Init an empty set.\
+RandomizedSet randomSet = new RandomizedSet();\
+\
+// Inserts 1 to the set. Returns true as 1 was inserted successfully.\
+randomSet.insert(1);\
+\
+// Returns false as 2 does not exist in the set.\
+randomSet.remove(2);\
+\
+// Inserts 2 to the set, returns true. Set now contains [1,2].\
+randomSet.insert(2);\
+\
+// getRandom should return either 1 or 2 randomly.\
+randomSet.getRandom();\
+\
+// Removes 1 from the set, returns true. Set now contains [2].\
+randomSet.remove(1);\
+\
+// 2 was already in the set, so return false.\
+randomSet.insert(2);\
+\
+// Since 1 is the only number in the set, getRandom always return 1.\
+randomSet.getRandom();\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+class RandomizedSet \{\
+public:\
+    map<int, int> h;\
+    vector<int> nums;\
+\
+    /** Initialize your data structure here. */\
+    RandomizedSet() \{\
+        \
+    \}\
+    \
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */\
+    bool insert(int val) \{\
+        if(h.find(val) != h.end())\
+            return false;\
+        else \{\
+            int location = nums.size();\
+            nums.push_back(val);\
+            h.insert(make_pair(val, location));\
+        \}\
+        return true;\
+    \}\
+    \
+    /** Removes a value from the set. Returns true if the set contained the specified element. */\
+    bool remove(int val) \{\
+        map<int, int> :: iterator iter = h.find(val);\
+        if(iter == h.end())\
+            return false;\
+        else \{\
+            int location = h[val];\
+            h[nums[nums.size() - 1]] = location;\
+            nums[location] = nums[nums.size() - 1];\
+            nums.pop_back();\
+            h.erase(iter);\
+        \}\
+        return true;\
+    \}\
+    \
+    /** Get a random element from the set. */\
+    int getRandom() \{\
+        int size = nums.size();\
+        return nums[rand() % size];\
+    \}\
+\};\
+\
+/**\
+ * Your RandomizedSet object will be instantiated and called as such:\
+ * RandomizedSet obj = new RandomizedSet();\
+ * bool param_1 = obj.insert(val);\
+ * bool param_2 = obj.remove(val);\
+ * int param_3 = obj.getRandom();\
+ */}
