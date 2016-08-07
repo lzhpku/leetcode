@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 public class Solution \{\
+    public int myAtoi(String str) \{\
+        if(str.length() == 0)\
+            return 0;\
+        int index = 0;\
+        while(index < str.length() && str.charAt(index) == ' ')\
+            index ++;\
+        int sign = 1;\
+        if(str.charAt(index) == '+' || str.charAt(index) == '-') \{\
+            sign = (str.charAt(index) == '+' ? 1 : -1);\
+            index ++;\
+        \}\
+        int ret = 0;\
+        while(index < str.length() && str.charAt(index) >= '0' && str.charAt(index) <= '9')\{\
+            int digit = str.charAt(index) - '0';\
+            if(ret > Integer.MAX_VALUE / 10 || (ret == Integer.MAX_VALUE / 10 && digit > Integer.MAX_VALUE % 10))\
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;\
+            ret = ret * 10 + digit;\
+            index ++;\
+        \}\
+        return ret * sign;\
+    \}\
+\}}

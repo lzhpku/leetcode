@@ -1,0 +1,27 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 class Solution \{\
+public:\
+    int minDistance(string word1, string word2) \{\
+        int len1 = word1.size(), len2 = word2.size();\
+        vector<int> temp(len2 + 1, 0);\
+        vector<vector<int>> ret(len1 + 1, temp);\
+        for(int i = 0; i <= len1; i ++)\
+            ret[i][0] = i;\
+        for(int i = 0; i <= len2; i ++)\
+            ret[0][i] = i;\
+        for(int i = 1; i <= len1; i ++) \{\
+            for(int j = 1; j <= len2; j ++) \{\
+                if(word1[i - 1] == word2[j - 1])\
+                    ret[i][j] = ret[i - 1][j - 1];\
+                else\
+                    ret[i][j] = min(min(ret[i][j - 1], ret[i - 1][j]), ret[i - 1][j - 1]) + 1;\
+            \}\
+        \}\
+        return ret[len1][len2];\
+    \}\
+\};}

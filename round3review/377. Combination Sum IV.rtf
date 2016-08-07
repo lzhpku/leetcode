@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-BoldItalic;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red242\green242\blue242;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.\
+
+\b Example:
+\b0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\i\b\fs26 \cf2 \cb4 nums
+\f2\i0\b0  = [1, 2, 3]\
+
+\f1\i\b target
+\f2\i0\b0  = 4\
+\
+The possible combination ways are:\
+(1, 1, 1, 1)\
+(1, 1, 2)\
+(1, 2, 1)\
+(1, 3)\
+(2, 1, 1)\
+(2, 2)\
+(3, 1)\
+\
+Note that different sequences are counted as different combinations.\
+\
+Therefore the output is 
+\f1\i\b 7
+\f2\i0\b0 .\
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \
+
+\b Follow up:
+\b0 \cb1 \uc0\u8232 \cb3 What if negative numbers are allowed in the given array?\cb1 \uc0\u8232 \cb3 How does it change the problem?\cb1 \uc0\u8232 \cb3 What limitation we need to add to the question to allow negative numbers?\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+class Solution \{\
+public:\
+    int combinationSum4(vector<int>& nums, int target) \{\
+        vector<int> res (target + 1, 0);\
+        sort(nums.begin(), nums.end());\
+        for (int i = 1; i < target + 1; i ++) \{\
+            for (int j = 0; j < nums.size() && nums[j] <= i; j ++) \{\
+                if (nums[j] == i)\
+                    res[i] ++;\
+                else\
+                    res[i] = res[i] + res[i - nums[j]];\
+            \}\
+        \}\
+        return res[target];\
+    \}\
+\};}

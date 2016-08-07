@@ -1,0 +1,47 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 class Solution \{\
+public:\
+    vector<string> ret;\
+    set <string> res;\
+    \
+    vector<string> removeInvalidParentheses(string s) \{\
+        int ln = 0, rn = 0;\
+        for(int i = 0; i < s.size(); i ++) \{\
+            if(s[i] == '(')\
+                ln ++;\
+            if(s[i] == ')') \{\
+                if(ln > 0)\
+                    ln --;\
+                else\
+                    rn ++;\
+            \}\
+        \}\
+        dfs(s, ln, rn, 0, 0, "");\
+        ret.assign(res.begin(), res.end());\
+        return ret;\
+    \}\
+    \
+    void dfs(string s, int ln, int rn, int open, int i, string temp) \{\
+        if(i == s.size() && ln == 0 && rn == 0 && open == 0) \{\
+            res.insert(temp);\
+            return;\
+        \}\
+        if(i == s.size() || ln < 0 || rn < 0 || open < 0)\
+            return;\
+        if(s[i] == '(') \{\
+            dfs(s, ln - 1, rn, open, i + 1, temp);\
+            dfs(s, ln, rn, open + 1, i + 1, temp + s[i]);\
+        \}\
+        else if(s[i] == ')') \{\
+            dfs(s, ln, rn - 1, open, i + 1, temp);\
+            dfs(s, ln, rn, open - 1, i + 1, temp + s[i]);\
+        \}\
+        else\
+            dfs(s, ln, rn, open, i + 1, temp + s[i]);\
+    \}\
+\};}

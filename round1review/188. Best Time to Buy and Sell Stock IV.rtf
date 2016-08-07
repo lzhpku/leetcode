@@ -1,0 +1,28 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 public class Solution \{\
+    public int maxProfit(int k, int[] prices) \{\
+        int len = prices.length;\
+        if(k > len / 2) \{\
+            int profit = 0;\
+            for(int i = 0; i < len - 1; i ++) \{\
+                if(prices[i + 1] - prices[i] > 0)\
+                    profit += prices[i + 1] - prices[i];\
+            \}\
+            return profit;\
+        \}\
+        int dp [][] = new int [k + 1][len + 1];\
+        for(int i = 1; i <= k; i ++) \{\
+            int hold = Integer.MIN_VALUE;\
+            for(int j = 1; j <= len; j ++) \{\
+                dp[i][j] = Math.max(dp[i][j - 1], hold + prices[j - 1]);\
+                hold = Math.max(hold, dp[i - 1][j - 1] - prices[j - 1]);\
+            \}\
+        \}\
+        return dp[k][len];\
+    \}\
+\}}

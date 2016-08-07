@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /**\
+ * Definition for singly-linked list.\
+ * struct ListNode \{\
+ *     int val;\
+ *     ListNode *next;\
+ *     ListNode(int x) : val(x), next(NULL) \{\}\
+ * \};\
+ */\
+\
+/**\
+ * Definition for singly-linked list.\
+ * public class ListNode \{\
+ *     int val;\
+ *     ListNode next;\
+ *     ListNode(int x) \{ val = x; \}\
+ * \}\
+ */\
+public class Solution \{\
+    public ListNode mergeKLists(ListNode[] lists) \{\
+        Queue <ListNode> pri = new PriorityQueue <ListNode> (10, (ListNode a, ListNode b) -> (a.val - b.val));\
+        ListNode ret = new ListNode(0), cur = ret;\
+        for(int i = 0; i < lists.length; i ++)\
+            if(lists[i] != null)\
+                pri.add(lists[i]);\
+        while(!pri.isEmpty()) \{\
+            ListNode temp = pri.poll();\
+            cur.next = temp;\
+            cur = cur.next;\
+            if(temp.next != null)\
+                pri.add(temp.next);\
+        \}\
+        return ret.next;\
+    \}\
+\}\
+\
+\
+\
+class Solution \{\
+public:\
+    ListNode *mergeKLists(vector<ListNode *> &lists) \{\
+    if(lists.empty())\{\
+        return nullptr;\
+    \}\
+    while(lists.size() > 1)\{\
+        lists.push_back(mergeTwoLists(lists[0], lists[1]));\
+        lists.erase(lists.begin());\
+        lists.erase(lists.begin());\
+    \}\
+    return lists.front();\
+\}\
+ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) \{\
+    if(l1 == nullptr)\{\
+        return l2;\
+    \}\
+    if(l2 == nullptr)\{\
+        return l1;\
+    \}\
+    if(l1->val <= l2->val)\{\
+        l1->next = mergeTwoLists(l1->next, l2);\
+        return l1;\
+    \}\
+    else\{\
+        l2->next = mergeTwoLists(l1, l2->next);\
+        return l2;\
+    \}\
+\}\
+\};}

@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 class Solution \{\
+public:\
+    bool *flag;\
+    vector<vector<int> > ret;\
+    vector<int> temp;\
+    void calcu(vector<int>& nums, int start, vector<int>& temp) \{\
+            if(start >= nums.size())\
+                return;\
+            for(int i = start; i < nums.size(); i ++) \{\
+                if(i > 0 && !flag[i - 1] && nums[i] == nums[i - 1])\
+                    continue;\
+                if(!flag[i]) \{\
+                    flag[i] = true;\
+                    temp.push_back(nums[i]);\
+                    ret.push_back(temp);\
+                    calcu(nums, i + 1, temp);\
+                    temp.pop_back();\
+                    flag[i] = false;\
+                \}\
+            \}\
+        \}\
+\
+    vector<vector<int> > subsetsWithDup(vector<int>& nums) \{\
+        sort(nums.begin(), nums.end());\
+        flag = new bool[nums.size()];\
+        memset(flag, 0, nums.size() * sizeof(bool));\
+        calcu(nums, 0, temp);\
+        ret.push_back(temp);\
+        return ret;\
+    \}\
+\};}

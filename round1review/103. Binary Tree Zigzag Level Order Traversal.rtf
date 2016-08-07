@@ -1,0 +1,44 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /**\
+ * Definition for a binary tree node.\
+ * public class TreeNode \{\
+ *     int val;\
+ *     TreeNode left;\
+ *     TreeNode right;\
+ *     TreeNode(int x) \{ val = x; \}\
+ * \}\
+ */\
+public class Solution \{\
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) \{\
+        List<List<Integer>> ret = new ArrayList<>();\
+        if(root == null)\
+            return ret;\
+        Queue<TreeNode> q = new LinkedList<>();\
+        q.add(root);\
+        boolean order = true;\
+        int size = 1;\
+        while(!q.isEmpty()) \{\
+            List<Integer> temp = new ArrayList<>();\
+            for(int i = 0; i < size; i ++) \{\
+                TreeNode t = q.poll();\
+                if(order) \
+                    temp.add(t.val);\
+                else\
+                    temp.add(0, t.val);\
+                if(t.left != null)\
+                    q.add(t.left);\
+                if(t.right != null)\
+                    q.add(t.right);\
+            \}\
+            ret.add(temp);\
+            size = q.size();\
+            order = order ? false : true;\
+        \}\
+        return ret;\
+    \}\
+\}}

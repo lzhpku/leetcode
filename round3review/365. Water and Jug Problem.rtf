@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red14\green115\blue192;
+\red242\green242\blue242;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 You are given two jugs with capacities 
+\i x
+\i0  and 
+\i y
+\i0  litres. There is an infinite amount of water supply available. You need to determine whether it is possible to measure exactly 
+\i z
+\i0  litres using these two jugs.\
+If 
+\i z
+\i0  liters of water is measurable, you must have 
+\i z
+\i0  liters of water contained within 
+\b one or both buckets
+\b0  by the end.\
+Operations allowed:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Fill any of the jugs completely with water.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Empty any of the jugs.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pour water from one jug into another till the other jug is completely full or the first jug itself is empty.\cb1 \
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+\cf2 \cb3 \
+
+\b Example 1:
+\b0  (From the famous {\field{\*\fldinst{HYPERLINK "https://www.youtube.com/watch?v=BVtQNK_ZUJg"}}{\fldrslt 
+\i \cf4 \strokec4 "Die Hard"
+\i0  example}})\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs26 \cf2 \cb5 Input: x = 3, y = 5, z = 4\
+Output: True\
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \
+
+\b Example 2:
+\b0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs26 \cf2 \cb5 Input: x = 2, y = 6, z = 5\
+Output: False\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+class Solution \{\
+public:\
+    bool canMeasureWater(int x, int y, int z) \{\
+        if(x == z || y == z || x + y == z)\
+            return true;\
+        if(x + y < z)\
+            return false;\
+        return z % gcd(x, y) == 0;\
+    \}\
+    \
+    int gcd(int a, int b) \{\
+        if(a % b == 0)\
+            return b;\
+        return gcd(b, a % b);\
+    \}\
+\};}

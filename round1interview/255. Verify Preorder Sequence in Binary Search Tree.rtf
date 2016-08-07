@@ -1,0 +1,26 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.\
+\
+You may assume each number in the sequence is unique.\
+\
+Follow up:\
+Could you do it using only constant space complexity?\
+\
+public class Solution \{\
+    public boolean verifyPreorder(int[] preorder) \{\
+        int lowerBound = Integer.MIN_VALUE, i = -1;\
+        for(int cur : preorder) \{\
+            if(cur < lowerBound)\
+                return false;\
+            while(i != -1 && cur > preorder[i])\
+                lowerBound = preorder[i --];\
+            preorder[++ i] = cur;\
+        \}\
+        return true;\
+    \}\
+\}}

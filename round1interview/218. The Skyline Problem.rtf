@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 class Solution \{\
+public:\
+    vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) \{\
+        vector<pair<int, int>> ret;\
+        if(buildings.empty())\
+            return ret;\
+        return partition(buildings, 0, buildings.size() - 1);\
+    \}\
+    \
+    vector<pair<int, int>> partition(vector<vector<int>>& buildings, int s, int e) \{\
+        vector<pair<int, int>> ret;\
+        if(s > e)\
+            return ret;\
+        if(s == e) \{\
+            ret.push_back(make_pair(buildings[s][0], buildings[s][2]));\
+            ret.push_back(make_pair(buildings[s][1], 0));\
+            return ret;\
+        \}\
+        int m = (s + e) / 2;\
+        return merge(partition(buildings, s, m), partition(buildings, m + 1, e));\
+    \}\
+    \
+    vector<pair<int, int>> merge(vector<pair<int, int>> v1, vector<pair<int, int>> v2) \{\
+        vector<pair<int, int>> ret;\
+        int h1 = 0, h2 = 0;\
+        while(!v1.empty() && !v2.empty()) \{\
+            int x = 0, h = 0;\
+            if(v1[0].first < v2[0].first) \{\
+                x = v1[0].first;\
+                h1 = v1[0].second;\
+                h = max(h1, h2);\
+                v1.erase(v1.begin());\
+            \}\
+            else if(v1[0].first > v2[0].first) \{\
+                x = v2[0].first;\
+                h2 = v2[0].second;\
+                h = max(h1, h2);\
+                v2.erase(v2.begin());\
+            \}\
+            else \{\
+                x = v1[0].first;\
+                h1 = v1[0].second;\
+                h2 = v2[0].second;\
+                h = max(h1, h2);\
+                v1.erase(v1.begin());\
+                v2.erase(v2.begin());\
+            \}\
+            if(ret.empty() || ret.back().second != h)\
+                ret.push_back(make_pair(x, h));\
+        \}\
+        if(!v1.empty())\
+            ret.insert(ret.end(), v1.begin(), v1.end());\
+        if(!v2.empty())\
+            ret.insert(ret.end(), v2.begin(), v2.end());\
+        return ret;\
+    \}\
+\};}

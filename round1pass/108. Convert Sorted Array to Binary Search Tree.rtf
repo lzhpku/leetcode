@@ -1,0 +1,35 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /**\
+ * Definition for a binary tree node.\
+ * struct TreeNode \{\
+ *     int val;\
+ *     TreeNode *left;\
+ *     TreeNode *right;\
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) \{\}\
+ * \};\
+ */\
+class Solution \{\
+public:\
+    TreeNode* sortedArrayToBST(vector<int>& nums) \{\
+        if(nums.empty())\
+            return NULL;\
+        return help(nums, 0, (int)nums.size() - 1);\
+    \}\
+    \
+    TreeNode* help(vector<int>& nums, int s, int e) \{\
+        if(s > e)\
+            return NULL;\
+        if(s == e)\
+            return new TreeNode(nums[s]);\
+        int mid = (s + e) / 2;\
+        TreeNode* root = new TreeNode(nums[mid]);\
+        root -> left = help(nums, s, mid - 1);\
+        root -> right = help(nums, mid + 1, e);\
+        return root;\
+    \}\
+\};}

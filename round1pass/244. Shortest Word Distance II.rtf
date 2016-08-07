@@ -1,0 +1,56 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 This is a follow up of Shortest Word Distance. The only difference is now you are given the list of words and your method will be called repeatedly many times with different parameters. How would you optimize it?\
+\
+Design a class which receives a list of words in the constructor, and implements a method that takes two words word1 and word2 and return the shortest distance between these two words in the list.\
+\
+For example,\
+Assume that words = ["practice", "makes", "perfect", "coding", "makes"].\
+\
+Given word1 = \'93coding\'94, word2 = \'93practice\'94, return 3.\
+Given word1 = "makes", word2 = "coding", return 1.\
+\
+public class WordDistance \{\
+\
+    public HashMap<String, ArrayList<Integer>> map = new HashMap<String, ArrayList<Integer>>();\
+\
+    public WordDistance(String[] words) \{\
+        for(int i = 0; i < words.length; i ++) \{\
+            String w = words[i];\
+            if(map.containsKey(w))\
+                map.get(w).add(i);\
+            else \{\
+                ArrayList<Integer> list = new ArrayList<Integer>();\
+                list.add(i);\
+                map.put(w, list);\
+            \}\
+        \}\
+    \}\
+\
+    public int shortest(String word1, String word2) \{\
+        ArrayList<Integer> l1 = map.get(word1);\
+        ArrayList<Integer> l2 = map.get(word2);\
+        int ret = Integer.MAX_VALUE;\
+        for(int i = 0, j = 0; i < l1.size() && j < l2.size();) \{\
+            int index1 = l1.get(i), index2 = l2.get(j);\
+            if(index1 < index2) \{\
+                ret = Math.min(ret, index2 - index1);\
+                i ++;\
+            \}\
+            else\{\
+                ret = Math.min(ret, index1 - index2);\
+                j ++;\
+            \}\
+        \}\
+        return ret;\
+    \}\
+\}\
+\
+// Your WordDistance object will be instantiated and called as such:\
+// WordDistance wordDistance = new WordDistance(words);\
+// wordDistance.shortest("word1", "word2");\
+// wordDistance.shortest("anotherWord1", "anotherWord2");}

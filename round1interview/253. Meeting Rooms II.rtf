@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.\
+\
+For example,\
+Given [[0, 30],[5, 10],[15, 20]],\
+return 2.\
+\
+/**\
+ * Definition for an interval.\
+ * public class Interval \{\
+ *     int start;\
+ *     int end;\
+ *     Interval() \{ start = 0; end = 0; \}\
+ *     Interval(int s, int e) \{ start = s; end = e; \}\
+ * \}\
+ */\
+public class Solution \{\
+    public int minMeetingRooms(Interval[] intervals) \{\
+        Arrays.sort(intervals, (e1, e2) -> \{\
+            if(e1.start == e2.start)\
+                return e1.end - e2.end;\
+            return e1.start - e2.start;\
+        \});\
+        int ret = 0;\
+        PriorityQueue <Integer> q = new PriorityQueue <Integer> (10, (e1, e2) -> \{\
+            return e1 - e2;\
+        \});\
+        for(int i = 0; i < intervals.length; i ++) \{\
+            if(!q.isEmpty() && q.peek() <= intervals[i].start) \{\
+                q.poll();\
+                q.add(intervals[i].end);\
+            \}\
+            else \{\
+                q.add(intervals[i].end);\
+                ret ++;\
+            \}\
+        \}\
+        return ret;\
+    \}\
+\}}
