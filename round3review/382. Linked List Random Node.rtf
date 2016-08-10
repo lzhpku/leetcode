@@ -1,0 +1,317 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;\f2\fswiss\fcharset0 Helvetica;
+\f3\fnil\fcharset134 PingFangSC-Regular;\f4\fswiss\fcharset0 ArialMT;\f5\fmodern\fcharset0 CourierNewPSMT;
+\f6\fnil\fcharset0 SimSun;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red242\green242\blue242;
+\red0\green0\blue0;\red234\green234\blue234;\red0\green0\blue255;\red54\green54\blue54;\red246\green232\blue207;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Given a singly linked list, return a random node's value from the linked list. Each node must have the 
+\b same probability
+\b0  of being chosen.\
+
+\b Follow up:
+\b0 \cb1 \uc0\u8232 \cb3 What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?\
+
+\b Example:
+\b0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs26 \cf2 \cb4 // Init a singly linked list [1,2,3].\
+ListNode head = new ListNode(1);\
+head.next = new ListNode(2);\
+head.next.next = new ListNode(3);\
+Solution solution = new Solution(head);\
+\
+// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.\
+solution.getRandom();\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+\
+class Solution \{\
+public:\
+    ListNode* h;\
+\
+    /** @param head The linked list's head. Note that the head is guanranteed to be not null, so it contains at least one node. */\
+    Solution(ListNode* head) \{\
+        h = head;\
+    \}\
+    \
+    /** Returns a random node's value. */\
+    int getRandom() \{\
+        ListNode* cur = h;\
+        int ret = NULL;\
+        for(int i = 1; cur != NULL; i ++) \{\
+            if(rand() % i == 0) \{\
+                ret = cur -> val;\
+            \}\
+            cur = cur -> next;\
+        \}\
+        return ret;\
+    \}\
+\};\
+\
+/**\
+ * Your Solution object will be instantiated and called as such:\
+ * Solution obj = new Solution(head);\
+ * int param_1 = obj.getRandom();\
+ */\
+\
+\
+\
+\pard\pardeftab720\sl520\sa100\partightenfactor0
+
+\f3\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \'a1\'be\'ce\'ca\'cc\'e2\'a1\'bf
+\f4 \
+
+\f3 \'cb\'e6\'bb\'fa\'b3\'e9\'d1\'f9\'ce\'ca\'cc\'e2\'b1\'ed\'ca\'be\'c8\'e7\'cf\'c2\'a3\'ba
+\f4 \
+
+\f3 \'d2\'aa\'c7\'f3\'b4\'d3
+\f4 N
+\f3 \'b8\'f6\'d4\'aa\'cb\'d8\'d6\'d0
+\b \'cb\'e6\'bb\'fa\'b5\'c4
+\b0 \'b3\'e9\'c8\'a1
+\f4 k
+\f3 \'b8\'f6\'d4\'aa\'cb\'d8\'a3\'ac\'c6\'e4\'d6\'d0
+\f4 N
+\f3 \'ce\'de\'b7\'a8\'c8\'b7\'b6\'a8\'a1\'a3
+\f4 \
+
+\f3 \'d5\'e2\'d6\'d6\'d3\'a6\'d3\'c3\'b5\'c4\'b3\'a1\'be\'b0\'d2\'bb\'b0\'e3\'ca\'c7\'ca\'fd\'be\'dd\'c1\'f7\'b5\'c4\'c7\'e9\'bf\'f6\'cf\'c2\'a3\'ac\'d3\'c9\'d3\'da\'ca\'fd\'be\'dd\'d6\'bb\'c4\'dc\'b1\'bb\'b6\'c1\'c8\'a1\'d2\'bb\'b4\'ce\'a3\'ac\'b6\'f8\'c7\'d2\'ca\'fd\'be\'dd\'c1\'bf\'ba\'dc\'b4\'f3\'a3\'ac\'b2\'a2\'b2\'bb\'c4\'dc\'c8\'ab\'b2\'bf\'b1\'a3\'b4\'e6\'a3\'ac\'d2\'f2\'b4\'cb\'ca\'fd\'be\'dd\'c1\'bf
+\f4 N
+\f3 \'ca\'c7\'ce\'de\'b7\'a8\'d4\'da\'b3\'e9\'d1\'f9\'bf\'aa\'ca\'bc\'ca\'b1\'c8\'b7\'b6\'a8\'b5\'c4\'a3\'bb\'b5\'ab\'d3\'d6\'d2\'aa\'b1\'a3\'b3\'d6\'cb\'e6\'bb\'fa\'d0\'d4\'a3\'ac\'d3\'da\'ca\'c7\'d3\'d0\'c1\'cb\'d5\'e2\'b8\'f6\'ce\'ca\'cc\'e2\'a1\'a3\'cb\'f9\'d2\'d4\'cb\'d1\'cb\'f7\'cd\'f8\'d5\'be\'d3\'d0\'ca\'b1\'ba\'f2\'bb\'e1\'ce\'ca\'d5\'e2\'d1\'f9\'b5\'c4\'ce\'ca\'cc\'e2\'a1\'a3
+\f4 \
+
+\f3 \'d5\'e2\'c0\'ef\'b5\'c4\'ba\'cb\'d0\'c4\'ce\'ca\'cc\'e2\'be\'cd\'ca\'c7
+\f4 \'93
+\f3\b \'cb\'e6\'bb\'fa
+\f4\b0 \'94
+\f3 \'a3\'ac\'d4\'f5\'c3\'b4\'b2\'c5\'c4\'dc\'ca\'c7\'cb\'e6\'bb\'fa\'b5\'c4\'b3\'e9\'c8\'a1\'d4\'aa\'cb\'d8\'c4\'d8\'a3\'bf\'ce\'d2\'c3\'c7\'c9\'e8\'cf\'eb\'a3\'ac\'c2\'f2\'b2\'ca\'c6\'b1\'b5\'c4\'ca\'b1\'ba\'f2\'a3\'ac\'d3\'c9\'d3\'da\'cb\'f9\'d3\'d0\'b2\'ca\'c6\'b1\'b5\'c4\'d6\'d0\'bd\'b1\'b8\'c5\'c2\'ca\'b6\'bc\'ca\'c7\'d2\'bb\'d1\'f9\'b5\'c4\'a3\'ac\'cb\'f9\'d2\'d4\'ce\'d2\'c3\'c7\'b2\'c5\'ca\'c7
+\f4 \'93
+\f3 \'cb\'e6\'bb\'fa\'b5\'c4
+\f4 \'94
+\f3 \'c2\'f2\'b2\'ca\'c6\'b1\'a1\'a3\'c4\'c7\'c3\'b4\'d2\'aa\'ca\'b9\'b3\'e9\'c8\'a1\'ca\'fd\'be\'dd\'d2\'b2\'cb\'e6\'bb\'fa\'a3\'ac\'b1\'d8\'d0\'eb\'ca\'b9\'c3\'bf\'d2\'bb\'b8\'f6\'ca\'fd\'be\'dd\'b1\'bb\'b3\'e9\'d1\'f9\'b3\'f6\'c0\'b4\'b5\'c4\'b8\'c5\'c2\'ca\'b6\'bc\'d2\'bb\'d1\'f9\'a1\'a3
+\f4 \
+
+\f3 \'a1\'be\'bd\'e2\'be\'f6\'a1\'bf
+\f4 \
+\pard\pardeftab720\sl520\sa100\partightenfactor0
+
+\f3\b \cf2 \'bd\'e2\'be\'f6\'b7\'bd\'b0\'b8\'be\'cd\'ca\'c7\'d0\'ee\'cb\'ae\'bf\'e2\'b3\'e9\'d1\'f9\'a3\'a8
+\f4 reservoir sampling
+\f3 \'a3\'a9\'a1\'a3\'d6\'f7\'d2\'aa\'cb\'bc\'cf\'eb\'be\'cd\'ca\'c7\'b1\'a3\'b3\'d6\'d2\'bb\'b8\'f6\'bc\'af\'ba\'cf\'a3\'a8\'d5\'e2\'b8\'f6\'bc\'af\'ba\'cf\'d6\'d0\'b5\'c4\'c3\'bf\'b8\'f6\'ca\'fd\'d7\'d6\'b3\'f6\'cf\'d6\'a3\'a9\'a3\'ac\'d7\'f7\'ce\'aa\'d0\'ee\'cb\'ae\'b3\'d8\'a3\'ac\'d2\'c0\'b4\'ce\'b1\'e9\'c0\'fa\'cb\'f9\'d3\'d0\'ca\'fd\'be\'dd\'b5\'c4\'ca\'b1\'ba\'f2\'d2\'d4\'d2\'bb\'b6\'a8\'b8\'c5\'c2\'ca\'cc\'e6\'bb\'bb\'d5\'e2\'b8\'f6\'d0\'ee\'cb\'ae\'b3\'d8\'d6\'d0\'b5\'c4\'ca\'fd\'d7\'d6\'a1\'a3
+\f4\b0 \
+\pard\pardeftab720\sl520\sa100\partightenfactor0
+
+\f3 \cf2 \'c6\'e4\'ce\'b1\'b4\'fa\'c2\'eb\'c8\'e7\'cf\'c2\'a3\'ba
+\f4 \
+\pard\pardeftab720\sl390\partightenfactor0
+
+\f5\fs26 \cf5 \cb6 \strokec5 Init : a reservoir with the size
+\f3 \'a3\'ba
+\f5  k\cb1 \
+\cb6 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf7 \strokec7 for\cf5 \strokec5 \'a0\'a0\'a0 i=\'a0k+1\'a0to N\cb1 \
+\cb6 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 M=random(1, i);\cb1 \
+\cb6 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf7 \strokec7 if\cf5 \strokec5 ( M\'a0<=\'a0k)\cb1 \
+\cb6 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 SWAP the Mth value and ith value\cb1 \
+\cb6 \'a0\'a0\'a0\'a0\'a0\'a0 end\'a0\cf7 \strokec7 for
+\f4 \cf2 \strokec2 \
+\pard\pardeftab720\sl520\sa100\partightenfactor0
+
+\f3\fs28 \cf2 \cb3 \'bd\'e2\'ca\'cd\'d2\'bb\'cf\'c2\'a3\'ba\'b3\'cc\'d0\'f2\'b5\'c4\'bf\'aa\'ca\'bc\'be\'cd\'ca\'c7\'b0\'d1\'c7\'b0
+\f4 k
+\f3 \'b8\'f6\'d4\'aa\'cb\'d8\'b6\'bc\'b7\'c5\'b5\'bd\'cb\'ae\'bf\'e2\'d6\'d0\'a3\'ac\'c8\'bb\'ba\'f3\'b6\'d4\'d6\'ae\'ba\'f3\'b5\'c4\'b5\'da
+\f4 i
+\f3 \'b8\'f6\'d4\'aa\'cb\'d8\'a3\'ac\'d2\'d4
+\f4\b k/i
+\f3\b0 \'b5\'c4\'b8\'c5\'c2\'ca\'cc\'e6\'bb\'bb\'b5\'f4\'d5\'e2\'b8\'f6\'cb\'ae\'bf\'e2\'d6\'d0\'b5\'c4\'c4\'b3\'d2\'bb\'b8\'f6\'d4\'aa\'cb\'d8\'a3\'ac\'cb\'f9\'d2\'d4\'c3\'bf\'b8\'f6\'d4\'aa\'cb\'d8\'b1\'bb\'cc\'e6\'bb\'bb\'b5\'c4\'b8\'c5\'c2\'ca\'ca\'c7
+\f4\b 1/i\'a0
+\b0 \
+
+\f3 \'a1\'be\'d6\'a4\'c3\'f7\'a1\'bf
+\f4 \
+
+\f3 \'d4\'ad\'ce\'c4\'d6\'d0\'b5\'c4\'d6\'a4\'c3\'f7\'ce\'d2\'b8\'d0\'be\'f5\'d3\'d0\'ce\'ca\'cc\'e2\'a3\'ac\'cb\'f9\'d2\'d4\'be\'cd\'b8\'f8\'b3\'f6\'ce\'d2\'b5\'c4\'d6\'a4\'c3\'f7\'a1\'a3\'cf\'d4\'c8\'bb\'bb\'b9\'ca\'c7\'d3\'c3\'ca\'fd\'d1\'a7\'b9\'e9\'c4\'c9\'b7\'a8\'a3\'ac\'ce\'d2\'c3\'c7\'b5\'c4\'b3\'f5\'ca\'bc\'d7\'b4\'cc\'ac\'ca\'c7
+\f4 i = k + 1\
+
+\f3 \'ce\'d2\'c3\'c7\'c8\'a1\'c1\'cb\'c7\'b0
+\f4 k
+\f3 \'b8\'f6\'ca\'fd\'a3\'ac\'cf\'d4\'c8\'bb\'b3\'f5\'ca\'bc\'d7\'b4\'cc\'ac\'d5\'e2
+\f4 k
+\f3 \'b8\'f6\'ca\'fd\'b5\'c4\'b4\'e6\'d4\'da\'b8\'c5\'c2\'ca\'ca\'c7
+\f4 1
+\f3 \'a1\'a3
+\f6 \cb1 \uc0\u8232 
+\f3 \cb3 \'b5\'b1
+\f4 i = k + 1
+\f3 \'ca\'b1\'a3\'ac
+\f4 k+1
+\f3 \'d5\'e2\'b8\'f6\'ca\'fd\'d2\'d4
+\f4 k/(k+1) 
+\f3 \'b1\'bb\'d1\'a1\'d6\'d0\'c8\'a5\'cc\'e6\'bb\'bb\'c7\'b0
+\f4 k
+\f3 \'b8\'f6\'ca\'fd\'d6\'d0\'b5\'c4\'c4\'b3\'d2\'bb\'b8\'f6\'a1\'a3
+\f6 \uc0\u36825 \u20010 \u25805 \u20316 \u24050 \u32463 \u20445 \u35777 k+1\u36825 \u20010 \u25968 \u23383 \u26159 \u20197 \u27010 \u29575 
+\f4 k/(k+1)
+\f3 \'b1\'bb\'b1\'a3\'c1\'f4
+\f6 \uc0\u12290 \u25152 \u20197 \u25105 \u20204 \u35201 \u35777 \u26126 \u30340 \u23601 \u26159 \u21069 k\u20010 \u25968 \u20063 \u26159 \u20197 
+\f4 k/(k+1)
+\f3 \'b5\'c4\'b8\'c5\'c2\'ca\'b1\'bb\'b1\'a3\'c1\'f4\'a1\'a3\'b6\'d4\'d3\'da\'d5\'e2
+\f4 k
+\f3 \'b8\'f6\'ca\'fd\'d6\'d0\'b5\'c4\'c8\'ce\'d2\'e2\'d2\'bb\'b8\'f6\'b6\'bc\'d3\'d0\'c1\'bd\'d6\'d6\'c7\'e9\'bf\'f6\'a3\'ac
+\f4 1.
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 (k+1
+\f3 \'d5\'e2\'b8\'f6\'ca\'fd\'b1\'bb\'d1\'a1\'d6\'d0\'c1\'cb
+\f4 ) \'a02.
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f6 \
+
+\f3 \'ce\'d2\'c3\'c7\'cb\'e6\'d2\'e2\'c8\'a1
+\f4  1=< j <= k 
+\f3 \'c0\'b4\'c7\'f3\'b5\'da
+\f4 j
+\f3 \'b8\'f6\'ca\'fd\'b5\'c4\'b1\'a3\'c1\'f4\'b8\'c5\'c2\'ca\'a1\'a3\'c4\'c7\'c3\'b4\'b8\'f9\'be\'dd\'c8\'ab\'b8\'c5\'c2\'ca\'b9\'ab\'ca\'bd
+\f4 \'a0
+\f6 \
+
+\f4 P(j) = P(j | 
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 )+ \'a0P(j | 
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 )
+\f6 \
+
+\f4 \'a0P(
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) = k/(k+1) \'a0\'a0P(
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) = 1/(k+1)
+\f6 \
+
+\f4 P(j | 
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) = (k-1)/k \'a0 
+\f3 \'d2\'f2\'ce\'aa\'d4\'da\'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa\'b5\'c4\'cc\'f5\'bc\'fe\'cf\'c2\'d3\'d0
+\f4 1/k
+\f3 \'b5\'c4\'b8\'c5\'c2\'ca
+\f4 j
+\f3 \'b1\'bb\'cc\'e6\'bb\'bb\'b5\'f4\'c1\'cb
+\f6 \
+
+\f4 P(j | 
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) = \'a01 \'a0 
+\f3 \'d4\'ad\'c0\'b4\'c7\'b0
+\f4 k
+\f3 \'b8\'f6\'ca\'fd\'b6\'bc\'d2\'d4
+\f4 1
+\f3 \'b8\'c5\'c2\'ca\'b4\'e6\'d4\'da
+\f6 \
+\pard\pardeftab720\sl420\sa100\partightenfactor0
+\cf2 \uc0\u25152 \u20197 \
+\pard\pardeftab720\sl520\sa100\partightenfactor0
+
+\f4 \cf2 P(j) = P(j | 
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 )+ \'a0P(j | 
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 )
+\f6 \
+
+\f4 \'a0 \'a0 \'a0 = \'a0(k-1)/k \'a0* \'a0\'a0k/(k+1) \'a0+\'a0\'a0\'a01\'a0*\'a01/(k+1)
+\f6 \
+
+\f4 \'a0 \'a0 \'a0 = \'a0k / (k+1)
+\f6 \
+\pard\pardeftab720\sl420\sa100\partightenfactor0
+\cf2 \uc0\u22240 \u20026 j\u26159 \u20219 \u24847 \u21462 \u20540 \u30340 \u25152 \u20197 \u24471 \u35777 \u12290 \
+\uc0\u25509 \u19979 \u26469 \u25105 \u20204 \u20551 \u35774  i = n \u26102 \u25104 \u31435 \u65292  \u25105 \u20204 \u26469 \u35777 \u26126 i = n + 1\u30340 \u24773 \u20917 \
+\uc0\u26082 \u28982 i = n \u26102 \u25104 \u31435 \u65292 \u25152 \u20197  i = n \u26102 \u20219 \u24847 \u19968 \u20010 \u25968  1 <= j <= n \u37117 \u20197 \u27010 \u29575  k/n \u20986 \u29616 \u22312 \u32467 \u26524 \u38598 \u20013 \u12290 \
+\uc0\u21516 \u29702 \u22240 \u20026 \u31532 n + 1\u20010 \u25968 \u20197 \u27010 \u29575 k/(n+1) \u36873 \u20013 \u65292 \u25152 \u20197 \u26080 \u38656 \u32771 \u34385 \u31532 n + 1 \u36825 \u20010 \u25968 \u65292 \u25105 \u20204 \u21482 \u35201 \u32771 \u34385 \u21069 n\u20010 \u25968 \u20013 \u30340 \u20219 \u19968 \u20010 1 <= j <= n\'a0\u22312 \u32467 \u26524 \u38598 \u20013 \u20986 \u29616 \u30340 \u27010 \u29575 \'a0\
+\uc0\u20381 \u28982 \u36824 \u26159 :\
+\'a0\
+\pard\pardeftab720\sl520\sa100\partightenfactor0
+
+\f4 \cf8 \cb9 \strokec8 P(j) = P(j | 
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 )+ \'a0P(j | 
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 )
+\f6 \
+
+\f4 \'a0P(
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) = k/(n+1) \'a0\'a0P(
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) = (n+1-k)/(n+1)
+\f6 \
+
+\f4 P(j | 
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) = k/n * (k-1)/k \'a0 
+\f3 \'d2\'f2\'ce\'aa\'d4\'da\'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa\'b5\'c4\'cc\'f5\'bc\'fe\'cf\'c2\'d3\'d0
+\f4 1/k
+\f3 \'b5\'c4\'b8\'c5\'c2\'ca
+\f4 j
+\f3 \'b1\'bb\'cc\'e6\'bb\'bb\'b5\'f4\'c1\'cb
+\f6 \
+
+\f4 P(j | 
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) = \'a0k/n \'a0 
+\f3 \'c7\'b0
+\f4 n
+\f3 \'b8\'f6\'ca\'fd\'b6\'bc\'d2\'d4
+\f4 k/n
+\f3 \'b8\'c5\'c2\'ca\'b4\'e6\'d4\'da
+\f6 \
+
+\f4 P(j) = P(j | 
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'b7\'a2\'c9\'fa
+\f4 )+ \'a0P(j | 
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 ) * P(
+\f3 \'cc\'e6\'bb\'bb\'c3\'bb\'b7\'a2\'c9\'fa
+\f4 )
+\f6 \
+
+\f4 \'a0 \'a0 \'a0= \'a0\'a0k/(n+1)\'a0*\'a0k/n * (k-1)/k +\'a0\'a0k/n\'a0* (n+1-k)/(n+1)
+\f6 \
+
+\f4 \'a0 \'a0 \'a0= \'a0k*(k-1)/(n*(n+1)) + k*(n+1-k)/(n*(n+1))\'a0
+\f6 \
+
+\f4 \'a0 \'a0 \'a0= \'a0k*(k-1+n+1-k)/(n*(n+1))\'a0
+\f6 \
+
+\f4 \'a0 \'a0 = \'a0k/(n+1)
+\f6 \
+
+\f3 \'b5\'c3\'d6\'a4\'a3\'a1
+\f6 \
+}

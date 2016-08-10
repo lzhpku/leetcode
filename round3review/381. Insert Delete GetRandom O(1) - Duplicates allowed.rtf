@@ -1,0 +1,119 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red184\green14\blue61;
+\red247\green238\blue241;\red242\green242\blue242;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Design a data structure that supports all following operations in 
+\i average
+\i0  
+\b O(1)
+\b0  time.\
+\pard\pardeftab720\sl600\partightenfactor0
+
+\b \cf2 Note: Duplicate elements are allowed.\
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\b0 \cf2 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0
+\f1\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 insert(val)
+\f0\fs28 \cf2 \cb3 \strokec2 : Inserts an item val to the collection.\cb1 \
+\ls1\ilvl0
+\f1\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 remove(val)
+\f0\fs28 \cf2 \cb3 \strokec2 : Removes an item val from the collection if present.\cb1 \
+\ls1\ilvl0
+\f1\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 getRandom
+\f0\fs28 \cf2 \cb3 \strokec2 : Returns a random element from current collection of elements. The probability of each element being returned is 
+\b linearly related
+\b0  to the number of same value the collection contains.\cb1 \
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+\cf2 \cb3 \
+
+\b Example:
+\b0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs26 \cf2 \cb6 // Init an empty collection.\
+RandomizedCollection collection = new RandomizedCollection();\
+\
+// Inserts 1 to the collection. Returns true as the collection did not contain 1.\
+collection.insert(1);\
+\
+// Inserts another 1 to the collection. Returns false as the collection contained 1. Collection now contains [1,1].\
+collection.insert(1);\
+\
+// Inserts 2 to the collection, returns true. Collection now contains [1,1,2].\
+collection.insert(2);\
+\
+// getRandom should return 1 with the probability 2/3, and returns 2 with the probability 1/3.\
+collection.getRandom();\
+\
+// Removes 1 from the collection, returns true. Collection now contains [1,2].\
+collection.remove(1);\
+\
+// getRandom should return 1 and 2 both equally likely.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+class RandomizedCollection \{\
+public:\
+    map<int, vector<int>> h;\
+    vector<int> nums;\
+\
+    /** Initialize your data structure here. */\
+    RandomizedCollection() \{\
+        \
+    \}\
+    \
+    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */\
+    bool insert(int val) \{\
+        h[val].push_back(nums.size());\
+        nums.push_back(val);\
+        return h[val].size() == 1;\
+    \}\
+    \
+    /** Removes a value from the collection. Returns true if the collection contained the specified element. */\
+    bool remove(int val) \{\
+        if(h.find(val) == h.end())\
+            return false;\
+        else \{\
+            int location = h[val].back();\
+            h[val].pop_back();\
+            if(h[val].size() == 0)\
+                h.erase(h.find(val));\
+            int lastVal = nums.back();\
+            nums.pop_back();\
+            if(lastVal != val) \{\
+                h[lastVal].back() = location;\
+                nums[location] = lastVal;\
+            \}\
+        \}\
+        return true;\
+    \}\
+    \
+    /** Get a random element from the collection. */\
+    int getRandom() \{\
+        int size = nums.size();\
+        return nums[rand() % size];\
+    \}\
+\};\
+\
+/**\
+ * Your RandomizedCollection object will be instantiated and called as such:\
+ * RandomizedCollection obj = new RandomizedCollection();\
+ * bool param_1 = obj.insert(val);\
+ * bool param_2 = obj.remove(val);\
+ * int param_3 = obj.getRandom();\
+ */}
