@@ -1,74 +1,0 @@
-{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 /**\
- * Definition for a binary tree node.\
- * public class TreeNode \{\
- *     int val;\
- *     TreeNode left;\
- *     TreeNode right;\
- *     TreeNode(int x) \{ val = x; \}\
- * \}\
- */\
-public class Solution \{\
-    public List<Integer> inorderTraversal(TreeNode root) \{\
-        List<Integer> ret = new ArrayList<Integer> ();\
-        if(root == null)\
-            return ret;\
-        Stack<TreeNode> s = new Stack<TreeNode>();\
-        TreeNode cur = root;\
-        while(cur != null || !s.empty()) \{\
-            while(cur != null) \{\
-                s.push(cur);\
-                cur = cur.left;\
-            \}\
-            cur = s.pop();\
-            ret.add(cur.val);\
-            cur = cur.right;\
-        \}\
-        return ret;\
-    \}\
-\}\
-\
-/**\
- * Definition for a binary tree node.\
- * struct TreeNode \{\
- *     int val;\
- *     TreeNode *left;\
- *     TreeNode *right;\
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) \{\}\
- * \};\
- */\
-class Solution \{\
-public:\
-    vector<int> inorderTraversal(TreeNode* root) \{\
-        vector<int> ret;\
-        if(root == NULL)\
-            return ret;\
-        stack<TreeNode*> s;\
-        TreeNode* t = root;\
-        s.push(t);\
-        while(!s.empty()) \{\
-            t = s.top();\
-            s.pop();\
-            while(t -> left != NULL) \{\
-                if(t -> right != NULL)\
-                    s.push(t -> right);\
-                s.push(t);\
-                t = t -> left;\
-            \}\
-            if(t -> right != NULL)\
-                s.push(t -> right);\
-            ret.push_back(t -> val);\
-            while(t -> right == NULL && !s.empty()) \{\
-                t = s.top();\
-                s.pop();\
-                ret.push_back(t -> val);\
-            \}\
-        \}\
-        return ret;\
-    \}\
-\};}
