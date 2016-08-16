@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Bold;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red184\green14\blue61;
+\red247\green238\blue241;\red242\green242\blue242;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A sequence of numbers is called a 
+\b wiggle sequence
+\b0  if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.\
+For example, 
+\f1\fs26 \cf4 \cb5 \strokec4 [1,7,4,9,2,5]
+\f0\fs28 \cf2 \cb3 \strokec2  is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast,
+\f1\fs26 \cf4 \cb5 \strokec4 [1,4,7,2,5]
+\f0\fs28 \cf2 \cb3 \strokec2  and 
+\f1\fs26 \cf4 \cb5 \strokec4 [1,7,4,5,5]
+\f0\fs28 \cf2 \cb3 \strokec2  are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.\
+Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.\
+
+\b Examples:
+\b0 \cb1 \uc0\u8232 \cb3 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f2\b\fs26 \cf2 \cb6 Input:
+\f1\b0  [1,7,4,9,2,5]\
+
+\f2\b Output:
+\f1\b0  6\
+The entire sequence is a wiggle sequence.\
+\
+
+\f2\b Input:
+\f1\b0  [1,17,5,10,13,15,10,5,16,8]\
+
+\f2\b Output:
+\f1\b0  7\
+There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].\
+\
+
+\f2\b Input:
+\f1\b0  [1,2,3,4,5,6,7,8,9]\
+
+\f2\b Output:
+\f1\b0  2\
+\pard\pardeftab720\sl600\sa200\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \
+
+\b Follow up:
+\b0 \cb1 \uc0\u8232 \cb3 Can you do it in O(
+\i n
+\i0 ) time?\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+class Solution \{\
+public:\
+    int wiggleMaxLength(vector<int>& nums) \{\
+        int a = 1, b = 1, size = nums.size();\
+        for(int i = 1; i < size; i ++) \{\
+            if(nums[i] > nums[i - 1])\
+                a = b + 1;\
+            else if(nums[i] < nums[i - 1])\
+                b = a + 1;\
+        \}\
+        return min(size, max(a, b));\
+    \}\
+\};}
